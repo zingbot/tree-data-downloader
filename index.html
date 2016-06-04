@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="./favicon.ico">
 
-    <title>311 Data Downloader powered by CartoDB</title>
+    <title>2015 Street Trees Data Downloader!</title>
 
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
 
@@ -31,7 +31,7 @@
         <div class="Grid">
           <div class="Grid-inner Grid-inner--vcenter">
             <div class="Grid-cell Grid-cell--col6">
-              <h1 class="u-iblock u-malign"><strong><i class="IconFont IconFont--size30 IconFont--clip"></i> NYC 311 Data Downloader</strong></h1><p class="info"></p>
+              <h1 class="u-iblock u-malign"><strong><i class="IconFont IconFont--size30 IconFont--clip"></i> NYC Street Trees Data Downloader</strong></h1><p class="info"></p>
             </div>
             <div class="Grid-cell Grid-cell--col6 clearfix u-txt-right">
               <nav class="">
@@ -95,24 +95,10 @@
                 </li>
               </ul>
             </li>
-            <li class="u-vspace-xxl">
-              <div class="u-vspace-l clearfix">
-                <div class="u-left">
-                  <span class="Number-circle u-txt-center fill fill-dark color-white u-iblock u-malign">2</span> <h2 class="u-iblock u-malign"><strong>Choose Date Range</strong></h2>
-                </div>
-                
-              </div>
-              <div class="u-vspace-xxl">
-                <div class="well u-pr" >
-                  <div class="well-inner" >
-                    <div id="slider"></div>
-                  </div>
-                </div>
-              </div>
-            </li>
+
             <li>
               <div class="u-vspace-l">
-                <span class="Number-circle u-txt-center fill fill-dark color-white u-iblock u-malign">3</span> <h2 class="u-iblock u-malign"><strong>Download! </strong></h2>
+                <span class="Number-circle u-txt-center fill fill-dark color-white u-iblock u-malign">2</span> <h2 class="u-iblock u-malign"><strong>Download! </strong></h2>
                 <div id="count"></div>
               </div>
               <ul class="u-ilist u-vspace-xxl">
@@ -152,14 +138,7 @@
               <h2><strong>ABOUT</strong></h2>
             </div>
             <div class="modal-body u-txt-left">
-              <p class="u-vspace-l">NYC Publishes 311 data on a daily basis on the <a href = 'http://data.cityofnewyork.us'>open data portal</a>.  The 2010 to present dataset contains over 7 million rows, and is a very large download.  This tool was built to give you quick access to a smaller geographic slice of the data in various map-ready formats.</p>
-
-              <p class="u-vspace-l">Every day, the latest 90 days of data are imported to CartoDB, powering this site.  (Note:  timestamps of exported data will include a 'Z' for zulu time, but are actually local times.  I am hoping to fix this soon.)
-
-              <p class="u-vspace-l">Data can be exported as geoJSON, zipped shapefile, and CSV, or can be imported directly to your cartoDB account. Geometries are exported in WGS84 (Latitude and Longitude).</p>
-              
-              <p class="u-vspace-l">If you like this project, or if you hate it, let me know by tweeting to @chris_whong.  Pull requests are welcomed! This project was built with the CartoDB web mapping platform, and is based on a <a href = 'http://chriswhong.github.io/plutoplus/'> similar tool built for PLUTO tax lot data</a>. 
-              Support open Data!</p>
+              <p>This is a simple data downloader for the 2015 Street Trees Data.  You can use it to get a smaller geographic slice of the data for use in localized analysis.
             </div>
       </div>
     </div>

@@ -18,7 +18,7 @@ var selectLayer = L.geoJson().addTo(map); //add empty geojson layer for selectio
 initLeafletDraw();
 
 //add cartodb named map
-var layerUrl = 'https://cwhong.cartodb.com/api/v2/viz/a1bdc326-73bb-11e5-927a-0ea31932ec1d/viz.json';
+var layerUrl = 'https://hackathon.cartodb.com/u/treescount-datajam/api/v2/viz/618b9c4c-2a63-11e6-97a6-0ecfd53eb7d3/viz.json';
 
 cartodb.createLayer(map, layerUrl)
   .addTo(map)
@@ -50,20 +50,18 @@ cartodb.createLayer(map, layerUrl)
     });  
   });
 
-var sql = new cartodb.SQL({ user: 'cwhong' });
+var sql = new cartodb.SQL({ user: 'treescount-datajam' });
 
 //get max, min, count, populate date range slider
-sql.execute("SELECT min(created_date),max(created_date),count(*) FROM cleaned")
+sql.execute("SELECT count(*) FROM tree_census_data_2015")
   .done(function(data) {
     var d = data.rows[0];
 
     var options = {
-      count: d.count.toLocaleString(),
-      start: moment(d.min).format('MM/DD/YYYY'),
-      end: moment(d.max).format('MM/DD/YYYY')
+      count: d.count.toLocaleString()
     }
 
-    var info = Mustache.render("Current Dataset contains {{count}} rows from {{{start}}} to {{{end}}}",options);
+    var info = Mustache.render("Current Dataset contains {{count}} rows",options);
     
     $('.info').text(info);
 
@@ -198,7 +196,7 @@ function buildQuery(count) {
 
   (count) ? selection.select = 'count(*)' : selection.select = '*';
 
-  var sql = Mustache.render('SELECT {{select}} FROM cleaned a WHERE ST_INTERSECTS({{{intersects}}}, a.the_geom) AND created_date >= \'{{dateRangeFormatted.min}}\' AND created_date <= \'{{dateRangeFormatted.max}}\'',selection);
+  var sql = Mustache.render('SELECT {{select}} FROM tree_census_data_2015 a WHERE ST_INTERSECTS({{{intersects}}}, a.the_geom)',selection);
 
   return sql;
 }
@@ -209,7 +207,7 @@ function hideCount() {
 
 function updateMap() {
   console.log('updatemap');
-  var mapQuery = Mustache.render('SELECT *,mod(cartodb_id,4) as cat FROM cleaned WHERE created_date >= \'{{dateRangeFormatted.min}}\' AND created_date <= \'{{dateRangeFormatted.max}}\'',selection);
+  var mapQuery = Mustache.render('SELECT *,mod(cartodb_id,4) as cat FROM tree_census_data_2015',selection);
   console.log(mapQuery);
 
   pointLayer.setSQL(mapQuery);
@@ -217,7 +215,7 @@ function updateMap() {
 }
 
 function buildUrl(sql) {
-  var url = Mustache.render('https://cwhong.cartodb.com/api/v2/sql?skipfields=cartodb_id,created_at,updated_at,name,description&format={{type}}&filename=311&q={{{sql}}}',{
+  var url = Mustache.render('https://treescount-datajam.cartodb.com/api/v2/sql?skipfields=cartodb_id,created_at,updated_at,name,description&format={{type}}&filename=streettrees&q={{{sql}}}',{
     type: selection.downloadType,
     sql: sql
   });
