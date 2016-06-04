@@ -215,7 +215,7 @@ function updateMap() {
 }
 
 function buildUrl(sql) {
-  var url = Mustache.render('https://treescount-datajam.cartodb.com/api/v2/sql?skipfields=cartodb_id,created_at,updated_at,name,description&format={{type}}&filename=streettrees&q={{{sql}}}',{
+  var url = Mustache.render('https://treescount-datajam.cartodb.com/api/v2/sql?skipfields=cartodb_id&format={{type}}&filename=streettrees&q={{{sql}}}',{
     type: selection.downloadType,
     sql: sql
   });
